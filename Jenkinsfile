@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Define your environment variables here
-        CREDENTIALS_ID = 'abhishek/******'  // Jenkins Credential ID for GCP credentials
+        CREDENTIALS_ID = 'abhishek-test/******'  // Jenkins Credential ID for GCP credentials
     }
 
     stages {
