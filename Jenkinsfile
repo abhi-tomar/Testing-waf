@@ -5,6 +5,18 @@ pipeline {
         // Define your environment variables here
         CREDENTIALS_ID = 'gcp-service-account'  // Jenkins Credential ID for GCP credentials
     }
+    
+    stages {
+        stage('Install Google Cloud SDK') {
+            steps {
+                script {
+                    sh 'curl https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-367.0.0-linux-x86_64.tar.gz -o gcloud-sdk.tar.gz'
+                    sh 'tar -xvf gcloud-sdk.tar.gz'
+                    sh './google-cloud-sdk/install.sh'
+                    sh 'source ~/.bashrc' // Reload the shell environment
+                }
+            }
+        }
 
     stages {
         stage('Checkout') {
