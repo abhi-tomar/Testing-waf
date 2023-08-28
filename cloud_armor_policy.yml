@@ -1,0 +1,44 @@
+resources:
+- name: abhishek-cloud-armor-policy
+  type: gcp-types/compute-v1:securityPolicies
+  properties:
+    name: abhishek-cloud-armor-policy
+    description: Testing-Cloud Armor policy
+    type: CLOUD_ARMOR
+    rules:
+      - description: Default rule allow all Ips
+        match:
+          versionedExpr: "SRC_IPS_V1" 
+          config:
+            srcIpRanges: ["*"]  
+        action: allow 
+        priority: 2147483647 
+
+      - description: Block the Ip range
+        match:
+          versionedExpr: "SRC_IPS_V1"
+          config:
+            srcIpRanges: ["0.0.0.0/0"]           
+        action: deny(403)
+        preview: false
+        priority: 2147483646 
+      
+      - description: Sqli rule
+        match:
+          expr:
+            expression: "evaluatePreconfiguredExpr('sqli-v33-stable')"
+        action: deny(403)
+        preview: false
+        priority: 40000
+
+      - description: Sqli exculde rule ids
+        match:
+          expr:
+            expression: "evaluatePreconfiguredExpr('sqli-v33-stable',['owasp-crs-v030301-id942421-sqli'])"
+        action: deny(403)
+        preview: false
+        priority: 50000
+
+    adaptiveProtectionConfig:
+        layer7DdosDefenseConfig:
+          enable: false
