@@ -5,7 +5,7 @@ pipeline {
         // Define your environment variables here
         CREDENTIALS_ID = 'gcp-service-account'  // Jenkins Credential ID for GCP credentials
     }
-    
+
     stages {
         stage('Install Google Cloud SDK') {
             steps {
@@ -17,9 +17,7 @@ pipeline {
                 }
             }
         }
-    }
-
-    stages {
+        
         stage('Checkout') {
             steps {
                 // Checkout your code from the repository
