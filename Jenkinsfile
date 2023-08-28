@@ -44,7 +44,7 @@ pipeline {
                 }
                 // Deploy the Cloud Armor policy using gcloud command
                 sh "${GCLOUD_PATH}/gcloud config set project ${PROJECT_ID}"
-                sh "${GCLOUD_PATH}/gcloud deployment-manager deployments create abhishek-cloud-armor-deployment --config=cloud_armor_policy.yaml"
+                sh "${GCLOUD_PATH}/gcloud deployment-manager deployments create abhishek-cloud-armor-deployment --config=cloud_armor_policy.yml"
             }
         }
     }
