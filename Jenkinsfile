@@ -32,10 +32,10 @@ pipeline {
             steps {
                 // Activate GCP credentials using Jenkins Credential ID
                 withCredentials([string(credentialsId: CREDENTIALS_ID, variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
-                    sh "${GCLOUD_PATH}/gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}"
+                    sh '/tmp/workspace/Testing-GCP-pipeline/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}'
                 }
-            }
-        }
+           }
+       }
 
         stage('Deploy Cloud Armor Policy') {
             steps {
